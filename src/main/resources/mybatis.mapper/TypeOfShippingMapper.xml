@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件-->
+<mapper namespace="com.nmz.concretestatistics.mapper.TypeOfShippingMapper">
+    <resultMap id="typeofship_name"
+               type="com.nmz.concretestatistics.povo.TypeOfShipping">
+        <result property="ship_name" column="ship_name" />
+    </resultMap>
+
+    <select id="" resultMap="typeofship_name">
+        select DISTINCT ship_name from type_of_shipping
+    </select>
+</mapper>
+
