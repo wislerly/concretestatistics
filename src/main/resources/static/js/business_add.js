@@ -38,6 +38,7 @@ function submitform() {
             addmaterialsvalue += check[i].value + "~";
         }
     }
-    document.getElementsByName("addmaterialsvalue").value = addmaterialsvalue;
-    document.getElementById("business_add_fm").submit();
+    var form = document.getElementById("business_add_fm");
+    form.addmaterialsvalue.value = addmaterialsvalue;
+    form.submit();
 }
