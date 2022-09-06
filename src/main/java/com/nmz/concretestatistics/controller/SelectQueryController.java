@@ -9,10 +9,8 @@ import com.nmz.concretestatistics.povo.StrengthGrade;
 import com.nmz.concretestatistics.povo.TypeOfShipping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class SelectQuery {
+public class SelectQueryController {
 
     @Autowired
     private TypeOfShippingMapper typeOfShippingMapper;
@@ -55,7 +53,7 @@ public class SelectQuery {
             strengthGradearr.add(strengthGrade.strength_name);
         }
 
-        map.put("pouring_position", typeOfShippingarr);
+        map.put("pouring_method", typeOfShippingarr);
         map.put("strength_grade", strengthGradearr);
         map.put("add_materials", addMaterialsarr);
         String mapJson = JSONObject.toJSONString(map);

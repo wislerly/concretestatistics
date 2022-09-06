@@ -1,6 +1,6 @@
 /**获取供查询的下拉列表框选项值 */
 function getQueryCrashLog() {
-    var pouring_position = "";
+    var pouring_method = "";
     var add_materials = "";
     var strength_grade = "";
     $.ajax({
@@ -10,9 +10,9 @@ function getQueryCrashLog() {
         dataType: "json",
         url: '/SelectQuery',  //请求的路径
         success: function (data) {
-            var pouring_positionarr = data.pouring_position//controller层传过来的map
-            for (var i = 0; i < pouring_positionarr.length; i++) {
-                pouring_position += "<option value=\'" + pouring_positionarr[i] + "'\>" + pouring_positionarr[i] + "</option>";
+            var pouring_methodarr = data.pouring_method//controller层传过来的map
+            for (var i = 0; i < pouring_methodarr.length; i++) {
+                pouring_method += "<option value=\'" + pouring_methodarr[i] + "'\>" + pouring_methodarr[i] + "</option>";
             }
             var addMaterialsarr = data.add_materials//controller层传过来的map
             for (var i = 0; i < addMaterialsarr.length; i++) {
@@ -24,7 +24,7 @@ function getQueryCrashLog() {
             }
         }
     });
-    $("#pouring_position").html(pouring_position);
+    $("#pouring_method").html(pouring_method);
     $("#strength_grade").html(strength_grade);
     $("#add_materials").html(add_materials);
 

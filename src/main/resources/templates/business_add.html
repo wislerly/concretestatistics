@@ -14,15 +14,21 @@
         <br>
         具体日期<input name="add_date" type="date"/>
         <br>
-        浇筑部位<input type="text"/>
+        浇筑部位<input name="pouring_position" type="text"/>
         <br>
-        浇筑方式<select id="pouring_position"></select>
+        浇筑方式<select id="pouring_method" name="pouring_method"></select>
         <br>
-        工程量<input type="text"/>
+        工程量<input name="quantities" type="text"/>
         <br>
-        附加材料<div id="add_materials"></div>
+        车数<input name="number_of_vehicles" type="text"/>
         <br>
-        强度等级<select id="strength_grade"></select>
+        运费<input name="freight" type="text"/>
+        <br>
+        附加材料<div id="add_materials" name="add_materials"></div>
+        <br>
+        强度等级<select id="strength_grade" name="strength_grade"></select>
+        <br>
+        <textarea name="remarks" placeholder="备注" style="height: 151px; width: 358px;"></textarea>
         <button type="button" onclick="submitform();">提交</button>
     </div>
     <input type="hidden" name="addmaterialsvalue">
