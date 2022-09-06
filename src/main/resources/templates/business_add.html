@@ -8,15 +8,24 @@
     <title>Title</title>
 </head>
 <body onload="getQueryCrashLog();">
-<form action = "/business/add" >
+<form id="business_add_fm" action = "/business/add" >
     <div>
         公司名称<input name="comp_name" type="text"/>
         <br>
         具体日期<input name="add_date" type="date"/>
         <br>
-        浇筑部位<select id="pouring_position"></select>
-        <button type="submit">提交</button>
+        浇筑部位<input type="text"/>
+        <br>
+        浇筑方式<select id="pouring_position"></select>
+        <br>
+        工程量<input type="text"/>
+        <br>
+        附加材料<div id="add_materials"></div>
+        <br>
+        强度等级<select id="strength_grade"></select>
+        <button type="button" onclick="submitform();">提交</button>
     </div>
+    <input type="hidden" name="addmaterialsvalue">
 </form>
 </body>
 </html>

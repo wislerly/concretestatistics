@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件-->
+<mapper namespace="com.nmz.concretestatistics.mapper.AddMaterialsMapper">
+
+    <select id="queryAllSelect" resultType="com.nmz.concretestatistics.povo.AddMaterials">
+        select distinct add_name from add_materials
+    </select>
+</mapper>

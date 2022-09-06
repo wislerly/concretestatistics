@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class Business_addConttroller {
 
@@ -13,8 +15,9 @@ public class Business_addConttroller {
     }
 
     @RequestMapping("/business/add")
-    public String busineesAdd2(@RequestParam("comp_name") String name) {
-        System.out.println(name);
+    public String busineesAdd2(HttpServletRequest request) {
+        String name = request.getParameter("comp_name");
+        String addmaterialsvalue = request.getParameter("addmaterialsvalue");
         return "business_add";
     }
 }
