@@ -1,7 +1,6 @@
 /**获取供查询的下拉列表框选项值 */
 function getQueryCrashLog() {
-    console.log("进来了");
-    var optionsDev = "<option value=''>全部</option>";
+    var optionsDev = "<option value=''></option>";
     $.ajax({
         async: false,
         cache: false,
