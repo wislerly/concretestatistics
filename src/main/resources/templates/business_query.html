@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="text/javascript" src=""
+    <script type="text/javascript" src="/js/business_query.js"></script>
+    <!--	引入jQuery-->
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
     <meta charset="UTF-8">
     <title>业务信息查询</title>
 </head>
-<body>
-
+<body onload="getAllData();">
+<table>
+    <tr>
+        <td>公司名称</td>
+        <td>具体日期</td>
+        <td>浇筑部位</td>
+        <td>浇筑方式</td>
+        <td>工程量</td>
+        <td>车数</td>
+        <td>运费</td>
+        <td>强度等级</td>
+        <td>备注</td>
+    </tr>
+</table>
 </body>
 </html>
