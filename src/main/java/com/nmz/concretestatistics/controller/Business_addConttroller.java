@@ -24,6 +24,7 @@ public class Business_addConttroller {
     @RequestMapping("/business/add")
     public String busineesAdd2(HttpServletRequest request) {
         BusinessDetials bd = new BusinessDetials();
+        String business_date = request.getParameter("add_date");
         String comp_name = request.getParameter("comp_name");
         String pouring_position = request.getParameter("pouring_position");
         String pouring_method = request.getParameter("pouring_method");
@@ -47,9 +48,10 @@ public class Business_addConttroller {
         bd.setQuantities(ChangeStringToNumber.format(quantities));
         bd.setNumber_of_vehicles((int) ChangeStringToNumber.format(number_of_vehicles));
         bd.setStrength_grade(finstrength_grade);
-        bd.setunit_price_of_convrete(ChangeStringToNumber.format(unit_price_of_convrete));
+        bd.setUnit_price_of_concrete(ChangeStringToNumber.format(unit_price_of_convrete));
         bd.setFreight(ChangeStringToNumber.format(freight));
         bd.setTotal_amount(ChangeStringToNumber.format("123"));
+        bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
         if (bdm.addBusiness(bd) == 1) {
             System.out.println("插入成功");

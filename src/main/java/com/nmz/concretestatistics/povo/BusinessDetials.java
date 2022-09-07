@@ -14,13 +14,31 @@ public class BusinessDetials {
 
     public String strength_grade;
 
-    public double unit_price_of_convrete;
+    public double unit_price_of_concrete;
 
     public double freight;
 
     public double total_amount;
 
     public String remarks;
+
+    public String business_date;
+
+    public String getBusiness_date() {
+        return business_date;
+    }
+
+    public void setBusiness_date(String business_date) {
+        this.business_date = business_date;
+    }
+
+    public double getUnit_price_of_concrete() {
+        return unit_price_of_concrete;
+    }
+
+    public void setUnit_price_of_concrete(double unit_price_of_concrete) {
+        this.unit_price_of_concrete = unit_price_of_concrete;
+    }
 
     public String getBusiness_name() {
         return business_name;
@@ -70,13 +88,6 @@ public class BusinessDetials {
         this.strength_grade = strength_grade;
     }
 
-    public double getunit_price_of_convrete() {
-        return unit_price_of_convrete;
-    }
-
-    public void setunit_price_of_convrete(double unit_price_of_convrete) {
-        this.unit_price_of_convrete = unit_price_of_convrete;
-    }
 
     public double getFreight() {
         return freight;

@@ -7,9 +7,9 @@
 
     <insert id="addBusiness" parameterType="com.nmz.concretestatistics.povo.BusinessDetials">
         insert into business_detials (business_name, pouring_position, pouring_method, quantities, number_of_vehicles,
-                                      strength_grade, unit_price_of_convrete, freight, total_amount, remarks)
+                                      strength_grade, unit_price_of_concrete, freight, total_amount, remarks, business_date)
         values (#{business_name}, #{pouring_position}, #{pouring_method}, #{quantities}, #{number_of_vehicles},
-                #{strength_grade}, #{unit_price_of_convrete}, #{freight}, #{total_amount}, #{remarks})
+                #{strength_grade}, #{unit_price_of_concrete}, #{freight}, #{total_amount}, #{remarks}, #{business_date})
     </insert>
     <select id="queryAll" resultType="com.nmz.concretestatistics.povo.BusinessDetials">
         select * from business_detials
