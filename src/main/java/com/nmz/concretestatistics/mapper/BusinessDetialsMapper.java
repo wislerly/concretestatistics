@@ -10,6 +10,6 @@ public interface BusinessDetialsMapper {
 
     int addBusiness(BusinessDetials bd);
 
-    List<BusinessDetials> queryAll();
+    List<BusinessDetials> queryAll(BusinessDetials businessDetials);
 
 }

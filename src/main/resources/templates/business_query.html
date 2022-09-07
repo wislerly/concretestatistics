@@ -8,6 +8,14 @@
     <title>业务信息查询</title>
 </head>
 <body onload="getAllData();">
+<from id="queryform">
+    <div>
+        公司名称<input name="comp_name" type="text"/>
+        <br>
+        具体日期<input name="add_date" type="date"/>
+        <button type="button" onclick="getAllData()">查询</button>
+    </div>
+</from>
 <table id="details">
 
 </table>

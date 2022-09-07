@@ -10,12 +10,18 @@ function getAllData() {
         "        <td>强度等级</td>\n" +
         "        <td>备注</td>\n" +
         "    </tr>";
+    var comp_name = document.getElementsByName("comp_name")[0].value;
+    var add_date = document.getElementsByName("add_date")[0].value;
     $.ajax({
         async: false,
         cache: false,
         type: 'POST',
         dataType: "json",
         url: '/GetAllData',  //请求的路径
+        data: {
+            comp_name: comp_name,
+            add_date: add_date,
+        },
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
                 detials += "<tr><td>"+ data[i].business_name +"</td><td>"+data[i].business_date+"</td><td>"+data[i].pouring_position+"</td><td>"+data[i].pouring_method+"</td>";

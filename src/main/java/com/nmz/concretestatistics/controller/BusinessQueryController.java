@@ -25,8 +25,13 @@ public class BusinessQueryController {
     }
 
     @RequestMapping(value = "GetAllData")
-    public void getAllDataQuery(HttpServletResponse response) throws Exception {
-        List<BusinessDetials> businessDetialslist = businessDetialsMapper.queryAll();
+    public void getAllDataQuery(HttpServletResponse response,HttpServletRequest request) throws Exception {
+        String comp_name = request.getParameter("comp_name");
+        String add_date = request.getParameter("add_date");
+        BusinessDetials businessDetials = new BusinessDetials();
+        businessDetials.setBusiness_name(comp_name);
+        businessDetials.setBusiness_date(add_date);
+        List<BusinessDetials> businessDetialslist = businessDetialsMapper.queryAll(businessDetials);
         /*防止中文乱码*/
         response.setCharacterEncoding("utf-8");
         String json = JSONObject.toJSONString(businessDetialslist);
