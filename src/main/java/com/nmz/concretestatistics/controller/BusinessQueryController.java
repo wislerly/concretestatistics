@@ -25,7 +25,7 @@ public class BusinessQueryController {
     }
 
     @RequestMapping(value = "GetAllData")
-    public void getAllDataQuery(HttpServletResponse response,HttpServletRequest request) throws Exception {
+    public void getAllDataQuery(HttpServletResponse response, HttpServletRequest request) throws Exception {
         String comp_name = request.getParameter("comp_name");
         String add_date = request.getParameter("add_date");
         BusinessDetials businessDetials = new BusinessDetials();

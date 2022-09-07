@@ -29,6 +29,9 @@
             <if test="business_name != null and business_name != ''">
                 and business_name = #{business_name}
             </if>
+            <if test="business_date != null and business_date != ''">
+                and business_date = #{business_date}
+            </if>
         </where>
     </select>
 </mapper>
