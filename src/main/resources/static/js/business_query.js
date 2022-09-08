@@ -12,6 +12,8 @@ function getAllData() {
         "    </tr>";
     var comp_name = document.getElementsByName("comp_name")[0].value;
     var add_date = document.getElementsByName("add_date")[0].value;
+    var pagenumber = document.getElementsByName("pagenumber")[0].value;
+    pagenumber
     $.ajax({
         async: false,
         cache: false,
@@ -21,6 +23,7 @@ function getAllData() {
         data: {
             comp_name: comp_name,
             add_date: add_date,
+            pagenumber: pagenumber,
         },
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
@@ -30,4 +33,22 @@ function getAllData() {
         }
     })
     $("#details").html(detials);
+}
+
+function pageup() {
+    var pagenumber = document.getElementsByName("pagenumber")[0].value;
+    if (pagenumber == '0') {
+        pagenumber = 1;
+    } else {
+        pagenumber = Number(pagenumber) - Number(1);
+    }
+    document.getElementsByName("pagenumber")[0].value = pagenumber;
+    getAllData();
+}
+
+function pagedown() {
+    var pagenumber = document.getElementsByName("pagenumber")[0].value;
+    pagenumber = Number(pagenumber) + Number(1);
+    document.getElementsByName("pagenumber")[0].value = pagenumber;
+    getAllData();
 }

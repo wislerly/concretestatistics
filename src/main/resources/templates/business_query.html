@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <script type="text/javascript" src="/js/business_query.js"></script>
     <!--	引入jQuery-->
@@ -17,6 +17,23 @@
     </div>
 </from>
 <table id="details">
+
+</table>
+<table style="margin-top: 480px;">
+    <tr>
+        <td>
+            <button onclick="pageup();">上一页</button>
+        </td>
+        <td>
+            <button onclick="pagedown();">下一页</button>
+        </td>
+        <td>
+            <input type="text" name="pagenumber" value="1" style="width: 24px;"/>
+        </td>
+        <td>
+            <button onclick="getAllData();">跳转</button>
+        </td>
+    </tr>
 
 </table>
 </body>

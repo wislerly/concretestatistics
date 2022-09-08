@@ -31,11 +31,12 @@ public class BusinessQueryController {
     public void getAllDataQuery(HttpServletResponse response, HttpServletRequest request) throws Exception {
         String comp_name = request.getParameter("comp_name");
         String add_date = request.getParameter("add_date");
+        String pagenumber = request.getParameter("pagenumber");
         BusinessDetials businessDetials = new BusinessDetials();
         businessDetials.setBusiness_name(comp_name);
         businessDetials.setBusiness_date(add_date);
         /*需要在查询前进行设置*/
-        PageHelper.startPage(1 , 1);
+        PageHelper.startPage(Integer.parseInt(pagenumber), 10);
         List<BusinessDetials> businessDetialslist = businessDetialsMapper.queryAll(businessDetials);
         //根据查询的数据列表，得到分页的结果对象
         PageInfo<BusinessDetials> pageList = new PageInfo<BusinessDetials>(businessDetialslist);
