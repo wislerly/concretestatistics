@@ -37,7 +37,7 @@ function getAllData() {
 
 function pageup() {
     var pagenumber = document.getElementsByName("pagenumber")[0].value;
-    if (pagenumber == '0') {
+    if (pagenumber <= 1) {
         pagenumber = 1;
     } else {
         pagenumber = Number(pagenumber) - Number(1);
