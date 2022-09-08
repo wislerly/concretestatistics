@@ -11,7 +11,7 @@
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 05/09/2022 18:29:46
+ Date: 08/09/2022 17:45:53
 */
 
 SET NAMES utf8mb4;
@@ -53,16 +53,19 @@ CREATE TABLE `business_detials`  (
   `quantities` decimal(6, 2) NULL DEFAULT NULL COMMENT '工程量',
   `number_of_vehicles` int(11) NULL DEFAULT NULL COMMENT '车数',
   `strength_grade` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '强度等级',
-  `unit_price_of_convrete` decimal(6, 2) NULL DEFAULT NULL COMMENT '砼单价',
+  `unit_price_of_concrete` decimal(6, 2) NULL DEFAULT NULL COMMENT '砼单价',
   `freight` decimal(6, 2) NULL DEFAULT NULL COMMENT '运费',
   `total_amount` decimal(15, 2) NULL DEFAULT NULL COMMENT '总金额',
   `remarks` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '备注',
-  PRIMARY KEY (`business_name`) USING BTREE
+  `business_date` datetime(0) NULL DEFAULT NULL COMMENT '业务日期'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of business_detials
 -- ----------------------------
+INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'P8早强C15', 0.00, 300.00, 123.00, '测试', '2022-09-07 00:00:00');
+INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'P12P6C30', 0.00, 300.00, 123.00, '测试', '2022-09-07 00:00:00');
+INSERT INTO `business_detials` VALUES ('才华有限公司2', '5层柱墙', '40米臂架泵', 88.00, 6, 'P12P6C15', 0.00, 300.00, 123.00, '测试', '2022-09-01 00:00:00');
 
 -- ----------------------------
 -- Table structure for price_adjustment
