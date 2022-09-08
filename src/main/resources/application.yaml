@@ -11,11 +11,17 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.nmz.concretestatistics.povo
   configuration:
-    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
-logging:
-  config: classpath:log4j.xml
-  level:
-    com.nmz.concretestatistics.mapper: debug
+    #org.apache.ibatis.logging.stdout.StdOutImpl 控制台打印sql语句方便调试sql语句执行错误
+    #org.apache.ibatis.logging.log4j2.Log4j2Impl:这个不在控制台打印查询结果,但是在log4j中打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapUnderscoreToCamelCase: true # 开启驼峰命名转换法
+
+  # 指定log4j2作为日志记录
+  logging:
+    config: classpath:log4j2.xml
+    level:
+      #这个指定你的dao层，也就是mapper文件的所在包
+      com.nmz.concretestatistics.mapper: debug
 #分页插件
 pagehelper:
   helper-dialect: mysql
