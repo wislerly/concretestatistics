@@ -34,6 +34,7 @@ public class BusinessQueryController {
         BusinessDetials businessDetials = new BusinessDetials();
         businessDetials.setBusiness_name(comp_name);
         businessDetials.setBusiness_date(add_date);
+        /*需要在查询前进行设置*/
         PageHelper.startPage(1 , 1);
         List<BusinessDetials> businessDetialslist = businessDetialsMapper.queryAll(businessDetials);
         //根据查询的数据列表，得到分页的结果对象
