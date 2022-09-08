@@ -13,7 +13,6 @@ function getAllData() {
     var comp_name = document.getElementsByName("comp_name")[0].value;
     var add_date = document.getElementsByName("add_date")[0].value;
     var pagenumber = document.getElementsByName("pagenumber")[0].value;
-    pagenumber
     $.ajax({
         async: false,
         cache: false,
@@ -51,4 +50,8 @@ function pagedown() {
     pagenumber = Number(pagenumber) + Number(1);
     document.getElementsByName("pagenumber")[0].value = pagenumber;
     getAllData();
+}
+
+function downloadExcel() {
+    location.href="/DownloadExcel";
 }
