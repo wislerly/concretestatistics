@@ -1,7 +1,9 @@
 package com.nmz.concretestatistics.controller;
 
 import com.nmz.concretestatistics.Utils.ChangeStringToNumber;
+import com.nmz.concretestatistics.mapper.AddMaterialsMapper;
 import com.nmz.concretestatistics.mapper.BusinessDetialsMapper;
+import com.nmz.concretestatistics.mapper.StrengthGradeMapper;
 import com.nmz.concretestatistics.povo.BusinessDetials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,12 @@ public class Business_addController {
 
     @Autowired
     BusinessDetialsMapper bdm;
+
+    @Autowired
+    AddMaterialsMapper amm;
+
+    @Autowired
+    StrengthGradeMapper sgm;
 
     @RequestMapping("businessadd")
     public String busineesAdd() {
@@ -49,7 +57,8 @@ public class Business_addController {
         bd.setStrength_grade(finstrength_grade);
         bd.setUnit_price_of_concrete(ChangeStringToNumber.format(unit_price_of_convrete));
         bd.setFreight(ChangeStringToNumber.format(freight));
-        bd.setTotal_amount(ChangeStringToNumber.format("123"));
+        double totalAmount = getprice(addmaterialsvalues, strength_grade);
+        bd.setTotal_amount(totalAmount);
         bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
         if (bdm.addBusiness(bd) == 1) {
@@ -58,5 +67,15 @@ public class Business_addController {
             System.out.println("插入失败");
         }
         return "business_add";
+    }
+
+
+    public double getprice(String[] addmater, String sgrade) {
+        Double addmaterPrice = 0.0;
+        for (String s : addmater) {
+            addmaterPrice += amm.getPrice(s);
+        }
+        addmaterPrice += sgm.getPrice(sgrade);
+        return addmaterPrice;
     }
 }
