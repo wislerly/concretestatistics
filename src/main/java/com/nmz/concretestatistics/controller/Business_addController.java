@@ -4,6 +4,7 @@ import com.nmz.concretestatistics.Utils.ChangeStringToNumber;
 import com.nmz.concretestatistics.mapper.AddMaterialsMapper;
 import com.nmz.concretestatistics.mapper.BusinessDetialsMapper;
 import com.nmz.concretestatistics.mapper.StrengthGradeMapper;
+import com.nmz.concretestatistics.mapper.TypeOfShippingMapper;
 import com.nmz.concretestatistics.povo.BusinessDetials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class Business_addController {
 
     @Autowired
     StrengthGradeMapper sgm;
+
+    @Autowired
+    TypeOfShippingMapper tosm;
 
     @RequestMapping("businessadd")
     public String busineesAdd() {
@@ -57,8 +61,8 @@ public class Business_addController {
         bd.setStrength_grade(finstrength_grade);
         bd.setUnit_price_of_concrete(ChangeStringToNumber.format(unit_price_of_convrete));
         bd.setFreight(ChangeStringToNumber.format(freight));
-        double totalAmount = getprice(addmaterialsvalues, strength_grade);
-        bd.setTotal_amount(totalAmount);
+        double totalAmount = getprice(addmaterialsvalues, strength_grade, pouring_method, comp_name, business_date, quantities);
+        bd.setTotal_amount(totalAmount + Double.parseDouble(freight));
         bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
         if (bdm.addBusiness(bd) == 1) {
@@ -70,12 +74,29 @@ public class Business_addController {
     }
 
 
-    public double getprice(String[] addmater, String sgrade) {
+    /**
+    * @Description: 根据传入参数返回总额，方法可以拆
+    * @Param: [addmater, sgrade, pouring_method, busName, busDate, quantities]
+    * @return: double
+    * @Author: 聂明智
+    * @Date: 2022/9/15-15:08
+    */
+    public double getprice(String[] addmater, String sgrade, String pouring_method, String busName, String busDate, String quantities) {
         Double addmaterPrice = 0.0;
         for (String s : addmater) {
             addmaterPrice += amm.getPrice(s);
         }
         addmaterPrice += sgm.getPrice(sgrade);
+
+        addmaterPrice += addmaterPrice * Double.parseDouble(quantities);
+
+        int i = bdm.getIfFloor(busName, busDate, pouring_method);
+        if (Double.parseDouble(quantities) < 80 || i > 1) {
+            addmaterPrice += tosm.getRePrice(pouring_method) * Double.parseDouble(quantities);
+        } else {
+            /*没有交过保底*/
+            addmaterPrice += tosm.getMinPrice(pouring_method);
+        }
         return addmaterPrice;
     }
 }

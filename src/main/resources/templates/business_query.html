@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:padding-bottom="http://java.sun.com/xml/ns/persistence/orm">
 <head>
     <script type="text/javascript" src="/js/business_query.js"></script>
     <!--	引入jQuery-->
@@ -10,8 +10,8 @@
 <body onload="getAllData();">
 <from id="queryform">
     <div>
-        公司名称<input name="comp_name" type="text"/>
-        <br>
+        公司名称<input name="comp_name" type="text" style="margin-right: 109px"/>
+
         具体日期<input name="add_date" type="date"/>
         <button type="button" onclick="getAllData()">查询</button>
     </div>
@@ -19,7 +19,7 @@
 <table id="details">
 
 </table>
-<table style="margin-top: 27%;margin-left: 1.2%;">
+<table style="position: absolute;bottom: 0;margin-left: 1.2%;">
     <tr>
         <td>
             <button onclick="pageup();">上一页</button>

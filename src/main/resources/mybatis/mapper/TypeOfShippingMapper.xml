@@ -11,6 +11,9 @@
     <select id="getRePrice" resultType="java.lang.Double">
         select ship_unitprice from type_of_shipping where ship_name = #{pouring_method}
     </select>
+    <select id="getMinPrice" resultType="java.lang.Double">
+        select ship_miniprice from type_of_shipping where ship_name = #{pouring_method}
+    </select>
 
 </mapper>
 

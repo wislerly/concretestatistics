@@ -26,4 +26,7 @@
             </if>
         </where>
     </select>
+    <select id="getIfFloor" resultType="java.lang.Integer">
+        select count(*) from business_detials where business_name = #{busName} and business_date = #{busDate} and pouring_method = #{pouring_method} and quantities <![CDATA[<]]> 80
+    </select>
 </mapper>

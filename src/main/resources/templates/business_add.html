@@ -6,29 +6,34 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/3.6.1/jquery.min.js}"></script>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .leftspace {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body onload="getQueryCrashLog();getRePeice();">
 <form id="business_add_fm" action = "/business/add" >
     <div>
-        公司名称<input name="comp_name" type="text"/>
+        公司名称<input name="comp_name" type="text" class="leftspace"/>
+        <br><br>
+        具体日期<input name="add_date" type="date"  class="leftspace"/>
+        <br><br>
+        强度等级<select id="strength_grade" name="strength_grade"  class="leftspace"></select>
+        <br><br>
+        附加材料<div id="add_materials" name="add_materials"  class="leftspace"></div>
         <br>
-        具体日期<input name="add_date" type="date"/>
-        <br>
-        浇筑部位<input name="pouring_position" type="text"/>
-        <br>
-        浇筑方式<select id="pouring_method" name="pouring_method" onchange="getRePeice();"></select>
-        参考价格<span id="reprice"></span>
-        <br>
-        工程量<input name="quantities" type="text"/>
-        <br>
-        车数<input name="number_of_vehicles" type="text"/>
-        <br>
-        运费<input name="freight" type="text"/>
-        <br>
-        附加材料<div id="add_materials" name="add_materials"></div>
-        <br>
-        强度等级<select id="strength_grade" name="strength_grade"></select>
-        <br>
+        浇筑部位<input name="pouring_position" type="text"  class="leftspace"/>
+        <br><br>
+        浇筑方式<select id="pouring_method" name="pouring_method" onchange="getRePeice(); "  class="leftspace"></select>
+        参考价格<span id="reprice"  class="leftspace"></span>
+        <br><br>
+        工程量<input name="quantities" type="text" placeholder="工程量小于80会收保底费"  class="leftspace"/>
+        <br><br>
+        车数<input name="number_of_vehicles" type="text"  class="leftspace"/>
+        <br><br>
+        运费<input name="freight" type="text"  class="leftspace"/>
+        <br><br>
         <textarea name="remarks" placeholder="备注" style="height: 151px; width: 358px;"></textarea>
         <button type="button" onclick="submitform();">提交</button>
     </div>
