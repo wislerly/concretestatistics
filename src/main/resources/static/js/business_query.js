@@ -25,7 +25,9 @@ function getAllData() {
             add_date: add_date,
             pagenumber: pagenumber,
         },
-        success: function (data) {
+        success: function (datas) {
+            var data = datas.data;
+            document.getElementById("maxPage").value = datas.maxPage;
             for (let i = 0; i < data.length; i++) {
                 detials += "<tr><td>" + data[i].business_name + "</td><td>" + data[i].business_date + "</td><td>" + data[i].pouring_position + "</td><td>" + data[i].pouring_method + "</td>";
                 detials += "<td>" + data[i].quantities + "</td><td>" + data[i].number_of_vehicles + "</td><td>" + data[i].freight + "</td><td>" + data[i].strength_grade + "</td>" + "<td>" + data[i].remarks + "</td><td>" + data[i].total_amount +"</td></tr>"
@@ -39,6 +41,7 @@ function pageup() {
     var pagenumber = document.getElementsByName("pagenumber")[0].value;
     if (pagenumber <= 1) {
         pagenumber = 1;
+        alert("已是第一页");
     } else {
         pagenumber = Number(pagenumber) - Number(1);
     }
@@ -48,7 +51,12 @@ function pageup() {
 
 function pagedown() {
     var pagenumber = document.getElementsByName("pagenumber")[0].value;
-    pagenumber = Number(pagenumber) + Number(1);
+
+    if (pagenumber < document.getElementById("maxPage").value) {
+        pagenumber = Number(pagenumber) + Number(1);
+    } else {
+        alert("已到达最后一页")
+    }
     document.getElementsByName("pagenumber")[0].value = pagenumber;
     getAllData();
 }

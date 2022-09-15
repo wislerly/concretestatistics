@@ -6,6 +6,19 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/3.6.1/jquery.min.js}"></script>
     <meta charset="UTF-8">
     <title>业务信息查询</title>
+    <style>
+        #details tr td {
+            border: 1px solid #000000;
+            text-align: center;
+        }
+        #details{
+            border: 1px solid #000000;
+            border-collapse: collapse;
+            width: 1140px;
+        }
+
+
+    </style>
 </head>
 <body onload="getAllData();">
 <from id="queryform">
@@ -16,6 +29,7 @@
         <button type="button" onclick="getAllData()">查询</button>
     </div>
 </from>
+<br>
 <table id="details">
 
 </table>
@@ -39,5 +53,6 @@
     </tr>
 
 </table>
+<input type="text" id="maxPage" value="1" style="display: none"/>
 </body>
 </html>

@@ -1,8 +1,6 @@
 package com.nmz.concretestatistics.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.nmz.concretestatistics.mapper.AddMaterialsMapper;
 import com.nmz.concretestatistics.mapper.StrengthGradeMapper;
 import com.nmz.concretestatistics.mapper.TypeOfShippingMapper;
