@@ -73,4 +73,15 @@ public class SelectQueryController {
         response.setCharacterEncoding("utf-8");
         response.getWriter().println(mapJson);
     }
+
+    @RequestMapping("/getGRePrice")
+    public void getGRePrice(@Param("strength_grade") String strength_grade, HttpServletResponse response) throws IOException {
+        double GrePrice = strengthGradeMapper.getPrice(strength_grade);
+        Map<String, Double> map = new HashMap<>();
+        map.put("greprice", GrePrice);
+        String mapJson = JSONObject.toJSONString(map);
+        /*防止中文乱码*/
+        response.setCharacterEncoding("utf-8");
+        response.getWriter().println(mapJson);
+    }
 }

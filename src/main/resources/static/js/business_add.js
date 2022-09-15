@@ -14,6 +14,22 @@ function getRePeice(){
     })
 }
 
+function getGRePeice(){
+    $.ajax({
+        async: false,
+        cache: false,
+        type: 'post',
+        dataType: 'json',
+        url: '/getGRePrice',
+        data: {
+            strength_grade: document.getElementById("strength_grade").value,
+        },
+        success: function (data) {
+            $("#greprice").html(data.greprice);
+        }
+    })
+}
+
 /**获取供查询的下拉列表框选项值 */
 function getQueryCrashLog() {
     var pouring_method = "";
@@ -43,7 +59,8 @@ function getQueryCrashLog() {
     $("#pouring_method").html(pouring_method);
     $("#strength_grade").html(strength_grade);
     $("#add_materials").html(add_materials);
-
+    getRePeice();
+    getGRePeice();
 }
 
 function submitform() {

@@ -12,14 +12,15 @@
         }
     </style>
 </head>
-<body onload="getQueryCrashLog();getRePeice();">
+<body onload="getQueryCrashLog();">
 <form id="business_add_fm" action = "/business/add" >
     <div>
         公司名称<input name="comp_name" type="text" class="leftspace"/>
         <br><br>
         具体日期<input name="add_date" type="date"  class="leftspace"/>
         <br><br>
-        强度等级<select id="strength_grade" name="strength_grade"  class="leftspace"></select>
+        强度等级<select id="strength_grade" name="strength_grade"  class="leftspace" onchange="getGRePeice()"></select>
+        参考价格<span id="greprice"  class="leftspace"></span>
         <br><br>
         附加材料<div id="add_materials" name="add_materials" ></div>
         <br>

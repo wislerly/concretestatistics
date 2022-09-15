@@ -45,10 +45,10 @@ public class Business_addController {
         String[] addmaterialsvalues = addmaterialsvalue.split("~");
         String strength_grade = request.getParameter("strength_grade");
         StringBuilder sb = new StringBuilder();
+        sb.append(strength_grade);
         for (String s : addmaterialsvalues) {
             sb.append(s);
         }
-        sb.append(strength_grade);
         String finstrength_grade = sb.toString();
         String unit_price_of_convrete = "";
         String freight = request.getParameter("freight");
