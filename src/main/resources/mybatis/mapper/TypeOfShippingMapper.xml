@@ -8,6 +8,9 @@
     <select id="querySelectQuery" resultType="com.nmz.concretestatistics.povo.TypeOfShipping">
         select DISTINCT ship_name from type_of_shipping
     </select>
+    <select id="getRePrice" resultType="java.lang.Double">
+        select ship_unitprice from type_of_shipping where ship_name = #{pouring_method}
+    </select>
 
 </mapper>
 

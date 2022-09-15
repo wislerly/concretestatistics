@@ -1,3 +1,19 @@
+function getRePeice(){
+    $.ajax({
+        async: false,
+        cache: false,
+        type: 'post',
+        dataType: 'json',
+        url: '/getRePrice',
+        data: {
+            pouring_method: document.getElementById("pouring_method").value,
+        },
+        success: function (data) {
+            $("#reprice").html(data.reprice);
+        }
+    })
+}
+
 /**获取供查询的下拉列表框选项值 */
 function getQueryCrashLog() {
     var pouring_method = "";

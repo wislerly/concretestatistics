@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body onload="getQueryCrashLog();">
+<body onload="getQueryCrashLog();getRePeice();">
 <form id="business_add_fm" action = "/business/add" >
     <div>
         公司名称<input name="comp_name" type="text"/>
@@ -16,7 +16,8 @@
         <br>
         浇筑部位<input name="pouring_position" type="text"/>
         <br>
-        浇筑方式<select id="pouring_method" name="pouring_method"></select>
+        浇筑方式<select id="pouring_method" name="pouring_method" onchange="getRePeice();"></select>
+        参考价格<span id="reprice"></span>
         <br>
         工程量<input name="quantities" type="text"/>
         <br>
