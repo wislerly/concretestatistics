@@ -91,7 +91,7 @@ public class Business_addController {
         addmaterPrice += addmaterPrice * Double.parseDouble(quantities);
 
         int i = bdm.getIfFloor(busName, busDate, pouring_method);
-        if (Double.parseDouble(quantities) < 80 || i > 1) {
+        if (Double.parseDouble(quantities) > 80 || i > 1) {
             addmaterPrice += tosm.getRePrice(pouring_method) * Double.parseDouble(quantities);
         } else {
             /*没有交过保底*/
