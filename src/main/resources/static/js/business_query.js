@@ -9,6 +9,7 @@ function getAllData() {
         "        <td>运费</td>\n" +
         "        <td>强度等级</td>\n" +
         "        <td>备注</td>\n" +
+        "        <td>总金额</td>\n" +
         "    </tr>";
     var comp_name = document.getElementsByName("comp_name")[0].value;
     var add_date = document.getElementsByName("add_date")[0].value;
@@ -27,7 +28,7 @@ function getAllData() {
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
                 detials += "<tr><td>" + data[i].business_name + "</td><td>" + data[i].business_date + "</td><td>" + data[i].pouring_position + "</td><td>" + data[i].pouring_method + "</td>";
-                detials += "<td>" + data[i].quantities + "</td><td>" + data[i].number_of_vehicles + "</td><td>" + data[i].freight + "</td><td>" + data[i].strength_grade + "</td>" + "<td>" + data[i].remarks + "</td></tr>"
+                detials += "<td>" + data[i].quantities + "</td><td>" + data[i].number_of_vehicles + "</td><td>" + data[i].freight + "</td><td>" + data[i].strength_grade + "</td>" + "<td>" + data[i].remarks + "</td><td>" + data[i].total_amount +"</td></tr>"
             }
         }
     })
