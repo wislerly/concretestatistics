@@ -22,8 +22,13 @@ import java.util.Map;
 @Controller
 public class BusinessQueryController {
 
-    @Autowired
+
     BusinessDetialsMapper businessDetialsMapper;
+
+    @Autowired
+    public void setBusinessDetialsMapper(BusinessDetialsMapper businessDetialsMapper) {
+        this.businessDetialsMapper = businessDetialsMapper;
+    }
 
     @RequestMapping(value = "businessquery")
     public String businessQuery() {

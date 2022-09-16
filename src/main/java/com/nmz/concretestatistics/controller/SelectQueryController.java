@@ -9,6 +9,7 @@ import com.nmz.concretestatistics.povo.StrengthGrade;
 import com.nmz.concretestatistics.povo.TypeOfShipping;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,14 +23,28 @@ import java.util.Map;
 @Controller
 public class SelectQueryController {
 
-    @Autowired
-    private TypeOfShippingMapper typeOfShippingMapper;
 
-    @Autowired
+    private AddMaterialsMapper addMaterialsMapper;
+    private TypeOfShippingMapper typeOfShippingMapper;
     private StrengthGradeMapper strengthGradeMapper;
 
+
     @Autowired
-    private AddMaterialsMapper addMaterialsMapper;
+    public void setTypeOfShippingMapper(TypeOfShippingMapper typeOfShippingMapper) {
+        this.typeOfShippingMapper = typeOfShippingMapper;
+    }
+
+    @Autowired
+    public void setStrengthGradeMapper(StrengthGradeMapper strengthGradeMapper) {
+        this.strengthGradeMapper = strengthGradeMapper;
+    }
+
+    @Autowired
+
+    public void setAddMaterialsMapper(AddMaterialsMapper addMaterialsMapper) {
+        this.addMaterialsMapper = addMaterialsMapper;
+    }
+
 
 
     @RequestMapping("SelectQuery")

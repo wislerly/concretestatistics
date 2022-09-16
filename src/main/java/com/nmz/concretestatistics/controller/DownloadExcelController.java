@@ -20,8 +20,13 @@ import java.util.List;
 @Controller
 public class DownloadExcelController {
 
-    @Autowired
+
     BusinessDetialsMapper businessDetialsMapper;
+
+    @Autowired
+    public void setBusinessDetialsMapper(BusinessDetialsMapper businessDetialsMapper) {
+        this.businessDetialsMapper = businessDetialsMapper;
+    }
 
     @RequestMapping(value = "/DownloadExcel")
     public void downloadExcel(HttpServletRequest request, HttpServletResponse response) throws Exception{

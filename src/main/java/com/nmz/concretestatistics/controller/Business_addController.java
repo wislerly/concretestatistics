@@ -15,17 +15,33 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class Business_addController {
 
-    @Autowired
     BusinessDetialsMapper bdm;
 
-    @Autowired
     AddMaterialsMapper amm;
 
-    @Autowired
     StrengthGradeMapper sgm;
 
-    @Autowired
     TypeOfShippingMapper tosm;
+
+    @Autowired
+    public void setBdm(BusinessDetialsMapper bdm) {
+        this.bdm = bdm;
+    }
+
+    @Autowired
+    public void setAmm(AddMaterialsMapper amm) {
+        this.amm = amm;
+    }
+
+    @Autowired
+    public void setSgm(StrengthGradeMapper sgm) {
+        this.sgm = sgm;
+    }
+
+    @Autowired
+    public void setTosm(TypeOfShippingMapper tosm) {
+        this.tosm = tosm;
+    }
 
     @RequestMapping("businessadd")
     public String busineesAdd() {
