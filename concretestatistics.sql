@@ -11,7 +11,7 @@
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 08/09/2022 17:45:53
+ Date: 19/09/2022 17:05:43
 */
 
 SET NAMES utf8mb4;
@@ -57,15 +57,15 @@ CREATE TABLE `business_detials`  (
   `freight` decimal(6, 2) NULL DEFAULT NULL COMMENT '运费',
   `total_amount` decimal(15, 2) NULL DEFAULT NULL COMMENT '总金额',
   `remarks` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '备注',
-  `business_date` datetime(0) NULL DEFAULT NULL COMMENT '业务日期'
+  `business_date` datetime(0) NULL DEFAULT NULL COMMENT '业务日期',
+  `pour_price` decimal(7, 2) NULL DEFAULT NULL COMMENT '浇筑单价',
+  `strength_price` decimal(6, 2) NULL DEFAULT NULL COMMENT '强度单价'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of business_detials
 -- ----------------------------
-INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'P8早强C15', 0.00, 300.00, 123.00, '测试', '2022-09-07 00:00:00');
-INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'P12P6C30', 0.00, 300.00, 123.00, '测试', '2022-09-07 00:00:00');
-INSERT INTO `business_detials` VALUES ('才华有限公司2', '5层柱墙', '40米臂架泵', 88.00, 6, 'P12P6C15', 0.00, 300.00, 123.00, '测试', '2022-09-01 00:00:00');
+INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'C15', 0.00, 300.00, 25640.00, '', '2022-09-19 00:00:00', 25.00, 250.00);
 
 -- ----------------------------
 -- Table structure for price_adjustment
@@ -172,9 +172,9 @@ INSERT INTO `type_of_shipping` VALUES ('40米臂架泵', 25.00, 80, 2000.00);
 INSERT INTO `type_of_shipping` VALUES ('47米臂架泵', 25.00, 80, 2000.00);
 INSERT INTO `type_of_shipping` VALUES ('52米臂架泵', 25.00, 80, 2000.00);
 INSERT INTO `type_of_shipping` VALUES ('63米臂架泵', 35.00, 80, 2800.00);
-INSERT INTO `type_of_shipping` VALUES ('塔吊', 10.00, NULL, NULL);
+INSERT INTO `type_of_shipping` VALUES ('塔吊', 10.00, 80, 10.00);
 INSERT INTO `type_of_shipping` VALUES ('柴油泵', 25.00, 80, 2000.00);
-INSERT INTO `type_of_shipping` VALUES ('汽车吊', 0.00, NULL, NULL);
-INSERT INTO `type_of_shipping` VALUES ('自卸', 0.00, NULL, NULL);
+INSERT INTO `type_of_shipping` VALUES ('汽车吊', 0.00, 80, 0.00);
+INSERT INTO `type_of_shipping` VALUES ('自卸', 0.00, 80, 0.00);
 
 SET FOREIGN_KEY_CHECKS = 1;
