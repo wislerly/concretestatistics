@@ -8,7 +8,7 @@
     <select id="queryAllSelect" resultType="com.nmz.concretestatistics.povo.AddMaterials">
         select distinct add_name from add_materials
     </select>
-    <select id="getPrice" resultType="java.lang.Double">
+    <select id="getPrice" resultType="java.lang.String">
         select add_UnitPrice from add_materials where add_name = #{add_name}
     </select>
 </mapper>

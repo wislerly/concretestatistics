@@ -4,7 +4,7 @@ public class AddMaterials {
 
     public String add_name;
 
-    public double add_UnitPrice;
+    public String add_UnitPrice;
 
     public String getAdd_name() {
         return add_name;
@@ -14,11 +14,11 @@ public class AddMaterials {
         this.add_name = add_name;
     }
 
-    public double getAdd_UnitPrice() {
+    public String getAdd_UnitPrice() {
         return add_UnitPrice;
     }
 
-    public void setAdd_UnitPrice(double add_UnitPrice) {
+    public void setAdd_UnitPrice(String add_UnitPrice) {
         this.add_UnitPrice = add_UnitPrice;
     }
 }

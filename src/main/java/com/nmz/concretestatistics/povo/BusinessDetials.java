@@ -1,5 +1,7 @@
 package com.nmz.concretestatistics.povo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+
 public class BusinessDetials {
 
     public String business_name;
@@ -23,6 +25,10 @@ public class BusinessDetials {
     public String remarks;
 
     public String business_date;
+
+    public double pour_price;
+
+    public double strength_price;
 
     public String getBusiness_date() {
         return business_date;
@@ -111,5 +117,21 @@ public class BusinessDetials {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public double getPour_price() {
+        return pour_price;
+    }
+
+    public void setPour_price(double pour_price) {
+        this.pour_price = pour_price;
+    }
+
+    public double getStrength_price() {
+        return strength_price;
+    }
+
+    public void setStrength_price(double strength_price) {
+        this.strength_price = strength_price;
     }
 }

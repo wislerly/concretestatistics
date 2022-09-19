@@ -60,6 +60,10 @@ public class Business_addController {
         String addmaterialsvalue = request.getParameter("addmaterialsvalue");
         String[] addmaterialsvalues = addmaterialsvalue.split("~");
         String strength_grade = request.getParameter("strength_grade");
+        String floatprice = request.getParameter("floatprice");
+        if (floatprice == null|| "".equals(floatprice)) {
+            floatprice = "0";
+        }
         StringBuilder sb = new StringBuilder();
         sb.append(strength_grade);
         for (String s : addmaterialsvalues) {
@@ -77,7 +81,7 @@ public class Business_addController {
         bd.setStrength_grade(finstrength_grade);
         bd.setUnit_price_of_concrete(ChangeStringToNumber.format(unit_price_of_convrete));
         bd.setFreight(ChangeStringToNumber.format(freight));
-        double totalAmount = getprice(addmaterialsvalues, strength_grade, pouring_method, comp_name, business_date, quantities);
+        double totalAmount = getprice(bd, addmaterialsvalues, strength_grade, pouring_method, comp_name, business_date, quantities, floatprice);
         bd.setTotal_amount(totalAmount + Double.parseDouble(freight));
         bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
@@ -97,22 +101,33 @@ public class Business_addController {
     * @Author: 聂明智
     * @Date: 2022/9/15-15:08
     */
-    public double getprice(String[] addmater, String sgrade, String pouring_method, String busName, String busDate, String quantities) {
+    public double getprice(BusinessDetials bd, String[] addmater, String sgrade, String pouring_method, String busName, String busDate, String quantities, String floatprice) {
         Double addmaterPrice = 0.0;
         for (String s : addmater) {
-            addmaterPrice += amm.getPrice(s);
+            addmaterPrice += ChangeStringToNumber.format(amm.getPrice(s));
         }
+
         addmaterPrice += sgm.getPrice(sgrade);
+
+        bd.setStrength_price(addmaterPrice);
+
+        addmaterPrice += Double.parseDouble(floatprice);
+
 
         addmaterPrice += addmaterPrice * Double.parseDouble(quantities);
 
         int i = bdm.getIfFloor(busName, busDate, pouring_method);
+
+        double strength_price = 0.0;
         if (Double.parseDouble(quantities) > 80 || i > 1) {
-            addmaterPrice += tosm.getRePrice(pouring_method) * Double.parseDouble(quantities);
+            strength_price += tosm.getRePrice(pouring_method);
         } else {
             /*没有交过保底*/
-            addmaterPrice += tosm.getMinPrice(pouring_method);
+            strength_price += tosm.getMinPrice(pouring_method);
         }
+        bd.setPour_price(strength_price);
+        addmaterPrice += strength_price * Double.parseDouble(quantities);;
+
         return addmaterPrice;
     }
 }

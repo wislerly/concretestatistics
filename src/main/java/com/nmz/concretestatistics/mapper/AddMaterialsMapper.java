@@ -10,5 +10,5 @@ import java.util.List;
 public interface AddMaterialsMapper {
     List<AddMaterials> queryAllSelect();
 
-    Double getPrice(@Param("add_name") String add_name);
+    String getPrice(@Param("add_name") String add_name);
 }
