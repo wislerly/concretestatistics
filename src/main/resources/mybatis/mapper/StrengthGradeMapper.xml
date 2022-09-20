@@ -9,7 +9,7 @@
         select distinct strength_name
         from strength_grade
     </select>
-    <select id="getPrice" resultType="java.lang.Double">
+    <select id="getPrice" resultType="java.lang.String">
         select strength_unitprice from strength_grade where strength_name = #{strength_name}
     </select>
 </mapper>

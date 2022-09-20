@@ -12,7 +12,7 @@ public interface TypeOfShippingMapper {
 
     List<TypeOfShipping> querySelectQuery();
 
-    double getRePrice(@Param("pouring_method") String pouring_method);
+    String getRePrice(@Param("pouring_method") String pouring_method);
 
-    double getMinPrice(@Param("pouring_method") String pouring_method);
+    String getMinPrice(@Param("pouring_method") String pouring_method);
 }

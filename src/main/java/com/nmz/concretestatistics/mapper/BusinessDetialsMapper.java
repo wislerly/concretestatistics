@@ -13,6 +13,6 @@ public interface BusinessDetialsMapper {
 
     List<BusinessDetials> queryAll(BusinessDetials businessDetials);
 
-    int getIfFloor(@Param("busName") String busName, @Param("busDate") String busDate, @Param("pouring_method") String pouring_method);
+    String getIfFloor(@Param("busName") String busName, @Param("busDate") String busDate, @Param("pouring_method") String pouring_method);
 
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 19/09/2022 17:05:43
+ Date: 20/09/2022 18:11:20
 */
 
 SET NAMES utf8mb4;
@@ -59,13 +59,14 @@ CREATE TABLE `business_detials`  (
   `remarks` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '备注',
   `business_date` datetime(0) NULL DEFAULT NULL COMMENT '业务日期',
   `pour_price` decimal(7, 2) NULL DEFAULT NULL COMMENT '浇筑单价',
-  `strength_price` decimal(6, 2) NULL DEFAULT NULL COMMENT '强度单价'
+  `strength_price` decimal(6, 2) NULL DEFAULT NULL COMMENT '强度单价',
+  `fin_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '砼单价'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of business_detials
 -- ----------------------------
-INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'C15', 0.00, 300.00, 25640.00, '', '2022-09-19 00:00:00', 25.00, 250.00);
+INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'C15', 0.00, 300.00, 25640.00, '', '2022-09-19 00:00:00', 25.00, 250.00, NULL);
 
 -- ----------------------------
 -- Table structure for price_adjustment

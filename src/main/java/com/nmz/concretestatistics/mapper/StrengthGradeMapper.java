@@ -12,5 +12,5 @@ public interface StrengthGradeMapper {
 
     List<StrengthGrade> queryAllSelect();
 
-    Double getPrice(@Param("strength_name") String strength_name);
+    String getPrice(@Param("strength_name") String strength_name);
 }

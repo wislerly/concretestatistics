@@ -9,9 +9,10 @@ import com.nmz.concretestatistics.povo.StrengthGrade;
 import com.nmz.concretestatistics.povo.TypeOfShipping;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class SelectQueryController {
 
     @RequestMapping("/getRePrice")
     public void getRePrice(@Param("pouring_method") String pouring_method, HttpServletResponse response) throws IOException {
-        double rePrice = typeOfShippingMapper.getRePrice(pouring_method);
+        double rePrice = Double.parseDouble(typeOfShippingMapper.getRePrice(pouring_method));
         Map<String, Double> map = new HashMap<>();
         map.put("reprice", rePrice);
         String mapJson = JSONObject.toJSONString(map);
@@ -90,8 +91,8 @@ public class SelectQueryController {
     }
 
     @RequestMapping("/getGRePrice")
-    public void getGRePrice(@Param("strength_grade") String strength_grade, HttpServletResponse response) throws IOException {
-        double GrePrice = strengthGradeMapper.getPrice(strength_grade);
+    public void getGRePrice(@RequestParam("strength_grade") String strength_grade, HttpServletResponse response) throws IOException {
+        double GrePrice = Double.parseDouble(strengthGradeMapper.getPrice(strength_grade));
         Map<String, Double> map = new HashMap<>();
         map.put("greprice", GrePrice);
         String mapJson = JSONObject.toJSONString(map);

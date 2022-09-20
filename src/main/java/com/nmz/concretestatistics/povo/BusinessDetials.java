@@ -4,10 +4,13 @@ import com.alibaba.excel.annotation.ExcelProperty;
 
 public class BusinessDetials {
 
+    /*公司名称*/
     public String business_name;
 
+    /*浇筑位置*/
     public String pouring_position;
 
+    /*浇筑方式*/
     public String pouring_method;
 
     public double quantities;
@@ -29,6 +32,9 @@ public class BusinessDetials {
     public double pour_price;
 
     public double strength_price;
+
+    /*砼单价*/
+    public double fin_price;
 
     public String getBusiness_date() {
         return business_date;
@@ -133,5 +139,13 @@ public class BusinessDetials {
 
     public void setStrength_price(double strength_price) {
         this.strength_price = strength_price;
+    }
+
+    public double getFin_price() {
+        return fin_price;
+    }
+
+    public void setFin_price(double fin_price) {
+        this.fin_price = fin_price;
     }
 }
