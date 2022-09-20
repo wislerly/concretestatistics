@@ -9,6 +9,7 @@ import com.nmz.concretestatistics.mapper.TypeOfShippingMapper;
 import com.nmz.concretestatistics.povo.BusinessDetials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -145,5 +146,10 @@ public class BusinessAddController {
             finPourPrice = Double.parseDouble(pourPrice);
         }
         return finPourPrice;
+    }
+
+    @Transactional
+    public int changeData() {
+        return 1;
     }
 }
