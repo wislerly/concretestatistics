@@ -8,10 +8,10 @@
     <select id="querySelectQuery" resultType="com.nmz.concretestatistics.povo.TypeOfShipping">
         select DISTINCT ship_name from type_of_shipping
     </select>
-    <select id="getRePrice" resultType="java.lang.Double">
+    <select id="getRePrice" resultType="java.lang.String">
         select ship_unitprice from type_of_shipping where ship_name = #{pouring_method}
     </select>
-    <select id="getMinPrice" resultType="java.lang.Double">
+    <select id="getMinPrice" resultType="java.lang.String">
         select ship_miniprice from type_of_shipping where ship_name = #{pouring_method}
     </select>
 

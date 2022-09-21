@@ -87,7 +87,7 @@ public class SelectQueryController {
         String mapJson = JSONObject.toJSONString(map);
         /*防止中文乱码*/
         response.setCharacterEncoding("utf-8");
-        response.getWriter().println(mapJson);
+        response.getWriter().print(mapJson);
     }
 
     @RequestMapping("/getGRePrice")
@@ -98,6 +98,6 @@ public class SelectQueryController {
         String mapJson = JSONObject.toJSONString(map);
         /*防止中文乱码*/
         response.setCharacterEncoding("utf-8");
-        response.getWriter().println(mapJson);
+        response.getWriter().print(mapJson);
     }
 }

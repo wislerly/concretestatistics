@@ -7,6 +7,7 @@
 package com.nmz.concretestatistics.Utils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * 由于Java的简单类型不能够精确的对浮点数进行运算，这个工具类提供精 确的浮点数运算，包括加减乘除和四舍五入。
@@ -203,7 +204,7 @@ public class Arith {
 
 		BigDecimal one = new BigDecimal("1");
 
-		return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+		return b.divide(one, scale, RoundingMode.HALF_UP).doubleValue();
 
 	}
 
@@ -221,7 +222,7 @@ public class Arith {
 
 		BigDecimal one = new BigDecimal("1");
 
-		return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+		return b.divide(one, scale, RoundingMode.HALF_UP).doubleValue();
 
 	}
 }
