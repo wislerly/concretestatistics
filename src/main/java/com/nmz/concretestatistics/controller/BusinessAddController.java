@@ -1,7 +1,6 @@
 package com.nmz.concretestatistics.controller;
 
 import com.nmz.concretestatistics.Utils.Arith;
-import com.nmz.concretestatistics.Utils.ChangeStringToNumber;
 import com.nmz.concretestatistics.mapper.AddMaterialsMapper;
 import com.nmz.concretestatistics.mapper.BusinessDetialsMapper;
 import com.nmz.concretestatistics.mapper.StrengthGradeMapper;
@@ -13,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static com.nmz.concretestatistics.Utils.ChangeStringToNumber.format;
 
 @Controller
 public class BusinessAddController {
@@ -68,7 +69,7 @@ public class BusinessAddController {
         double pourPrice = getPourPrice(pouring_method, quantities, comp_name, business_date, pouring_price);
         /*水泥强度价格，从数据库取值填充到前端直接获取前端数据，避免二次查询数据库*/
         String greprice = request.getParameter("greprice");
-        double floatprice = ChangeStringToNumber.format(request.getParameter("floatprice"));
+        double floatprice = format(request.getParameter("floatprice"));
         String freight = request.getParameter("freight");
         double finStrengthPrice = Arith.add(Double.parseDouble(greprice), floatprice);
         double finMPrice = Arith.add(addMaterialPrice, finStrengthPrice);
@@ -78,11 +79,11 @@ public class BusinessAddController {
         bd.setBusiness_name(comp_name);
         bd.setPouring_position(pouring_position);
         bd.setPouring_method(pouring_method);
-        bd.setQuantities(ChangeStringToNumber.format(quantities));
-        bd.setNumber_of_vehicles((int) ChangeStringToNumber.format(number_of_vehicles));
+        bd.setQuantities(format(quantities));
+        bd.setNumber_of_vehicles((int) format(number_of_vehicles));
         bd.setStrength_grade(finStrengthGrade);
         bd.setUnit_price_of_concrete(unit_price_of_convrete);
-        bd.setFreight(ChangeStringToNumber.format(freight));
+        bd.setFreight(format(freight));
         bd.setTotal_amount(unit_price_of_convrete);
         bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
@@ -106,7 +107,7 @@ public class BusinessAddController {
     public double getAddmaterialsPrice(String[] addmaterialsvalues) {
         double addmaterialsPrice = 0.0;
         for (String s : addmaterialsvalues) {
-            addmaterialsPrice += ChangeStringToNumber.format(amm.getPrice(s));
+            addmaterialsPrice += format(amm.getPrice(s));
         }
         return addmaterialsPrice;
     }
