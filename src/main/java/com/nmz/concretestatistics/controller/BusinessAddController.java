@@ -91,7 +91,7 @@ public class BusinessAddController {
         bd.setStrength_grade(finStrengthGrade);
         bd.setUnit_price_of_concrete(unit_price_of_convrete);
         bd.setFreight(format(freight));
-        bd.setTotal_amount(Arith.mul(unit_price_of_convrete, format(quantities)));
+        bd.setTotal_amount(Arith.add(Arith.mul(unit_price_of_convrete, format(quantities)), format(freight)));
         bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
         bd.setStrength_price(finMPrice);
@@ -149,7 +149,7 @@ public class BusinessAddController {
         double finPourPrice = 0;
         boolean hasMinFlag = "塔吊".equals(pourMethod) || "汽车吊".equals(pourMethod) || "自卸".equals(pourMethod);
         if (Double.parseDouble(quantities) < 80 && !hasMinFlag) {
-            finPourPrice = Arith.div(pouring_price, quantities);
+            finPourPrice = Arith.div(tosm.getMinPrice(pourMethod), quantities);
             isMin = true;
         } else {
             finPourPrice = Double.parseDouble(pourPrice);
@@ -188,7 +188,7 @@ public class BusinessAddController {
     /*判断当日中是否存在总工作量超过80但仍收了保底的数据*/
     public boolean ifChange(String pourMethod, String quantities, String busName, String busDate) {
         double todayQuantities = Double.parseDouble(bdm.getIfFloor(busName, busDate, pourMethod));
-        return todayQuantities > 80 && "1".equals(bdm.hasMin(busName, busDate, pourMethod));
+        return todayQuantities > 80 && Double.parseDouble(bdm.hasMin(busName, busDate, pourMethod)) > 0;
     }
 
 

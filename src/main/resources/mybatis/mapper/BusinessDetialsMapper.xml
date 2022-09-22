@@ -49,7 +49,7 @@
 
 
     <select id="hasMin" resultType="java.lang.String">
-        select 1 from business_detials where business_name = #{busName} and business_date = #{busDate} and pouring_method = #{pouring_method} and isminflag = '1'
+        select count(*) from business_detials where business_name = #{busName} and business_date = #{busDate} and pouring_method = #{pouring_method} and isminflag = '1'
     </select>
 
     <select id="queryForUpdate" resultType="com.nmz.concretestatistics.povo.BusinessDetials">
