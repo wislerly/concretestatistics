@@ -4,14 +4,14 @@
  Source Server         : linux
  Source Server Type    : MySQL
  Source Server Version : 50736
- Source Host           : 192.168.20.128:3306
+ Source Host           : 192.168.232.128:3306
  Source Schema         : concretestatistics
 
  Target Server Type    : MySQL
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 20/09/2022 18:11:20
+ Date: 22/09/2022 20:39:47
 */
 
 SET NAMES utf8mb4;
@@ -47,6 +47,7 @@ INSERT INTO `add_materials` VALUES ('防冻', 20.00);
 -- ----------------------------
 DROP TABLE IF EXISTS `business_detials`;
 CREATE TABLE `business_detials`  (
+  `busid` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '记录主键',
   `business_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '客户名称',
   `pouring_position` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浇筑部位',
   `pouring_method` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '浇筑方式',
@@ -60,13 +61,13 @@ CREATE TABLE `business_detials`  (
   `business_date` datetime(0) NULL DEFAULT NULL COMMENT '业务日期',
   `pour_price` decimal(7, 2) NULL DEFAULT NULL COMMENT '浇筑单价',
   `strength_price` decimal(6, 2) NULL DEFAULT NULL COMMENT '强度单价',
-  `fin_price` decimal(10, 2) NULL DEFAULT NULL COMMENT '砼单价'
+  `isminflag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '保底标记',
+  PRIMARY KEY (`busid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of business_detials
 -- ----------------------------
-INSERT INTO `business_detials` VALUES ('才华有限公司', '5层柱墙', '40米臂架泵', 88.00, 6, 'C15', 0.00, 300.00, 25640.00, '', '2022-09-19 00:00:00', 25.00, 250.00, NULL);
 
 -- ----------------------------
 -- Table structure for price_adjustment
