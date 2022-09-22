@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.List;
+
 import static com.nmz.concretestatistics.Utils.ChangeStringToNumber.format;
 
 @Controller
 public class BusinessAddController {
 
+    boolean isMin = false;
+
     BusinessDetialsMapper bdm;
+
+    String pouring_price;
 
     AddMaterialsMapper amm;
 
@@ -65,17 +71,18 @@ public class BusinessAddController {
         double addMaterialPrice = getAddmaterialsPrice(addmaterialsvalues);
         String strength_grade = request.getParameter("strength_grade");
         /*浇筑方式对应的价格由前端传入，不与数据库进行交互*/
-        String pouring_price = request.getParameter("pouring_price");
+        pouring_price = request.getParameter("pouring_price");
         double pourPrice = getPourPrice(pouring_method, quantities, comp_name, business_date, pouring_price);
         /*水泥强度价格，从数据库取值填充到前端直接获取前端数据，避免二次查询数据库*/
-        String greprice = request.getParameter("greprice");
+        String greprice = request.getParameter("tgreprice");
         double floatprice = format(request.getParameter("floatprice"));
         String freight = request.getParameter("freight");
-        double finStrengthPrice = Arith.add(Double.parseDouble(greprice), floatprice);
+        double finStrengthPrice = Arith.add(format(greprice), floatprice);
         double finMPrice = Arith.add(addMaterialPrice, finStrengthPrice);
         String finStrengthGrade = getFinstrengthGrade(addmaterialsvalues, strength_grade);
         double unit_price_of_convrete = Arith.add(pourPrice, finMPrice);
         String remarks = request.getParameter("remarks");
+        double pour_price = pourPrice;
         bd.setBusiness_name(comp_name);
         bd.setPouring_position(pouring_position);
         bd.setPouring_method(pouring_method);
@@ -84,19 +91,20 @@ public class BusinessAddController {
         bd.setStrength_grade(finStrengthGrade);
         bd.setUnit_price_of_concrete(unit_price_of_convrete);
         bd.setFreight(format(freight));
-        bd.setTotal_amount(unit_price_of_convrete);
+        bd.setTotal_amount(Arith.mul(unit_price_of_convrete, format(quantities)));
         bd.setBusiness_date(business_date);
         bd.setRemarks(remarks);
-        if (bdm.addBusiness(bd) == 1) {
-            System.out.println("插入成功");
-        } else {
-            System.out.println("插入失败");
-        }
+        bd.setStrength_price(finMPrice);
+        bd.setPour_price(pour_price);
+        bd.setIsminflag(isMin ? "1" : "0");
+        bd.setBusid(String.valueOf(format(bdm.getMaxId()) + 1));
+        changeOldData(bd);
         return "business_add";
     }
 
 
-    
+
+
     /**
     * @Description: 取得附加材料的总参考单价
     * @Param: addmaterialsvalues 附加材料的数组
@@ -139,18 +147,49 @@ public class BusinessAddController {
     */
     public double getPourPrice(String pourMethod, String quantities, String busName, String busDate, String pourPrice) {
         double finPourPrice = 0;
-        double todayQuantities = Arith.add(quantities, bdm.getIfFloor(busName, busDate, pourMethod));
         boolean hasMinFlag = "塔吊".equals(pourMethod) || "汽车吊".equals(pourMethod) || "自卸".equals(pourMethod);
-        if (todayQuantities < 80 || !hasMinFlag) {
-            finPourPrice = Arith.mul(tosm.getMinPrice(pourMethod), quantities);
+        if (Double.parseDouble(quantities) < 80 && !hasMinFlag) {
+            finPourPrice = Arith.div(pouring_price, quantities);
+            isMin = true;
         } else {
             finPourPrice = Double.parseDouble(pourPrice);
         }
         return finPourPrice;
     }
 
+
+    /*插入当前数据，然后看当日总改工作量超过保底更改旧数据*/
     @Transactional
-    public int changeData() {
-        return 1;
+    public void changeOldData(BusinessDetials bd) {
+
+        if (bdm.addBusiness(bd) == 1) {
+            System.out.println("插入成功");
+        } else {
+            System.out.println("插入失败");
+        }
+        if(ifChange(bd.getPouring_method(), String.valueOf(bd.getQuantities()), bd.getBusiness_name(), bd.getBusiness_date())){
+            List<BusinessDetials> list = bdm.queryForUpdate(bd);
+            for (BusinessDetials cbd : list) {
+                double newPourPrice = Double.parseDouble(pouring_price);
+                cbd.setPour_price(newPourPrice);
+                double unit_price_of_concrete = newPourPrice + cbd.getStrength_price();
+                cbd.setUnit_price_of_concrete(unit_price_of_concrete);
+                cbd.setTotal_amount(Arith.add(Arith.mul(unit_price_of_concrete, cbd.getQuantities()),cbd.getFreight()));
+                cbd.setIsminflag("0");
+                bdm.update(cbd);
+            }
+            isMin = false;
+            pouring_price = "";
+        }
+
     }
+
+
+    /*判断当日中是否存在总工作量超过80但仍收了保底的数据*/
+    public boolean ifChange(String pourMethod, String quantities, String busName, String busDate) {
+        double todayQuantities = Double.parseDouble(bdm.getIfFloor(busName, busDate, pourMethod));
+        return todayQuantities > 80 && "1".equals(bdm.hasMin(busName, busDate, pourMethod));
+    }
+
+
 }

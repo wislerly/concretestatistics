@@ -26,6 +26,7 @@ function getGRePeice(){
         },
         success: function (data) {
             $("#greprice").html(data.greprice);
+            document.getElementById("tgreprice").value = data.greprice;
         }
     })
 }

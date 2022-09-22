@@ -4,6 +4,10 @@ import com.alibaba.excel.annotation.ExcelProperty;
 
 public class BusinessDetials {
 
+    public String busid;
+
+
+
     /*公司名称*/
     public String business_name;
 
@@ -34,7 +38,7 @@ public class BusinessDetials {
     public double strength_price;
 
     /*砼单价*/
-    public double fin_price;
+    public String isminflag;
 
     public String getBusiness_date() {
         return business_date;
@@ -141,11 +145,18 @@ public class BusinessDetials {
         this.strength_price = strength_price;
     }
 
-    public double getFin_price() {
-        return fin_price;
+    public String getIsminflag() {
+        return isminflag;
     }
 
-    public void setFin_price(double fin_price) {
-        this.fin_price = fin_price;
+    public void setIsminflag(String isminflag) {
+        this.isminflag = isminflag;
+    }
+    public String getBusid() {
+        return busid;
+    }
+
+    public void setBusid(String busid) {
+        this.busid = busid;
     }
 }

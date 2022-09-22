@@ -8,10 +8,11 @@ function getAllData() {
         "        <td>车数</td>\n" +
         "        <td>运费</td>\n" +
         "        <td>强度等级</td>\n" +
-        "        <td>备注</td>\n" +
         "        <td>总金额</td>\n" +
-        "        <td>浇筑单价</td>\n" +
-        "        <td>强度单价（或保底价）</td>\n" +
+        "        <td>浇筑单价（或保底价）</td>\n" +
+        "        <td>强度单价</td>\n" +
+        "        <td>砼单价</td>\n" +
+        "        <td>备注</td>\n" +
         "    </tr>";
     var comp_name = document.getElementsByName("comp_name")[0].value;
     var add_date = document.getElementsByName("add_date")[0].value;
@@ -32,7 +33,7 @@ function getAllData() {
             document.getElementById("maxPage").value = datas.maxPage;
             for (let i = 0; i < data.length; i++) {
                 detials += "<tr><td>" + data[i].business_name + "</td><td>" + data[i].business_date + "</td><td>" + data[i].pouring_position + "</td><td>" + data[i].pouring_method + "</td>";
-                detials += "<td>" + data[i].quantities + "</td><td>" + data[i].number_of_vehicles + "</td><td>" + data[i].freight + "</td><td>" + data[i].strength_grade + "</td>" + "<td>" + data[i].remarks + "</td><td>" + data[i].total_amount +"</td><td>"+ data[i].pour_price + "</td><td>" + data[i].strength_price+"</td></tr>"
+                detials += "<td>" + data[i].quantities + "</td><td>" + data[i].number_of_vehicles + "</td><td>" + data[i].freight + "</td><td>" + data[i].strength_grade + "</td><td>" + data[i].total_amount +"</td><td>" + data[i].pour_price + "</td><td>" + data[i].strength_price+"</td><td>" + data[i].unit_price_of_concrete + "</td><td>" + data[i].remarks +"</td></tr>"
             }
         }
     })
