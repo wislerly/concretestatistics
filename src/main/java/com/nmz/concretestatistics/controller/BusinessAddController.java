@@ -21,8 +21,6 @@ import static com.nmz.concretestatistics.Utils.ChangeStringToNumber.format;
 @Controller
 public class BusinessAddController {
 
-    ThreadLocalUtil thredlocal = new ThreadLocalUtil();
-
     BusinessDetialsMapper bdm;
 
     AddMaterialsMapper amm;
@@ -70,8 +68,8 @@ public class BusinessAddController {
         double addMaterialPrice = getAddmaterialsPrice(addmaterialsvalues);
         String strength_grade = request.getParameter("strength_grade");
         /*浇筑方式对应的价格由前端传入，不与数据库进行交互*/
-        thredlocal.set("pouring_price", request.getParameter("pouring_price"));
-        double pourPrice = getPourPrice(pouring_method, quantities, thredlocal.get("pouring_price"));
+        ThreadLocalUtil.set("pouring_price", request.getParameter("pouring_price"));
+        double pourPrice = getPourPrice(pouring_method, quantities, ThreadLocalUtil.get("pouring_price"));
         /*水泥强度价格，从数据库取值填充到前端直接获取前端数据，避免二次查询数据库*/
         String greprice = request.getParameter("tgreprice");
         double floatprice = format(request.getParameter("floatprice"));
@@ -94,7 +92,7 @@ public class BusinessAddController {
         bd.setRemarks(remarks);
         bd.setStrength_price(finMPrice);
         bd.setPour_price(pourPrice);
-        bd.setIsminflag(thredlocal.get("isMin") ? "1" : "0");
+        bd.setIsminflag(Boolean.TRUE.equals(ThreadLocalUtil.get("isMin")) ? "1" : "0");
         bd.setBusid(String.valueOf(format(bdm.getMaxId()) + 1));
         changeOldData(bd);
         return "business_add";
@@ -148,9 +146,9 @@ public class BusinessAddController {
         boolean hasMinFlag = "塔吊".equals(pourMethod) || "汽车吊".equals(pourMethod) || "自卸".equals(pourMethod);
         if (Double.parseDouble(quantities) < 80 && !hasMinFlag) {
             finPourPrice = Arith.div(tosm.getMinPrice(pourMethod), quantities);
-            thredlocal.set("isMin", true);
+            ThreadLocalUtil.set("isMin", true);
         } else {
-            thredlocal.set("isMin", false);
+            ThreadLocalUtil.set("isMin", false);
             finPourPrice = Double.parseDouble(pourPrice);
         }
         return finPourPrice;
@@ -169,7 +167,7 @@ public class BusinessAddController {
         if(ifChange(bd.getPouring_method(), String.valueOf(bd.getQuantities()), bd.getBusiness_name(), bd.getBusiness_date())){
             List<BusinessDetials> list = bdm.queryForUpdate(bd);
             for (BusinessDetials cbd : list) {
-                double newPourPrice = Double.parseDouble(thredlocal.get("pouring_price"));
+                double newPourPrice = Double.parseDouble(ThreadLocalUtil.get("pouring_price"));
                 cbd.setPour_price(newPourPrice);
                 double unit_price_of_concrete = newPourPrice + cbd.getStrength_price();
                 cbd.setUnit_price_of_concrete(unit_price_of_concrete);
@@ -179,8 +177,8 @@ public class BusinessAddController {
             }
 
         }
-        thredlocal.removeValue("isMin");
-        thredlocal.removeValue("pouring_price");
+        ThreadLocalUtil.removeValue("isMin");
+        ThreadLocalUtil.removeValue("pouring_price");
 
     }
 
